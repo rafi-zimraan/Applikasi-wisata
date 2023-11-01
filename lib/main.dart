@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Applikasi Wisata Indonesia',
       theme: ThemeData(),
-      home: const MainScreen(),
+      home: MainScreen(),
     );
   }
 }

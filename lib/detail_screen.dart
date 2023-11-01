@@ -1,153 +1,107 @@
-import 'package:awesome_flutter/tour.dart';
+// ignore_for_file: library_private_types_in_public_api
+
+import 'package:awesome_flutter/main_screen.dart';
 import 'package:flutter/material.dart';
 
-var informationTextStyle = const TextStyle(fontFamily: 'Oxygen');
+class DetailScreen extends StatefulWidget {
+  final sportPlace tempat;
 
-class DetailScreen extends StatelessWidget {
-  final tourPlace place;
+  const DetailScreen({
+    super.key,
+    required this.tempat,
+  });
 
-  const DetailScreen({Key? key, required this.place}) : super(key: key);
+  @override
+  _DetailScreenState createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  bool isImageModalOpen = false;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
+      appBar: AppBar(
+        title: Text(widget.tempat.name),
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            Stack(
-              children: <Widget>[
-                Image.asset(place.imageAsset),
-                SafeArea(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        CircleAvatar(
-                          backgroundColor: Colors.grey,
-                          child: IconButton(
-                            icon: const Icon(
-                              Icons.arrow_back,
-                              color: Colors.white,
-                            ),
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                          ),
-                        ),
-                        const ButtonInput(),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InkWell(
+              onTap: () {
+                setState(() {
+                  isImageModalOpen = true;
+                });
+              },
+              child: Image(image: AssetImage(widget.tempat.imagePath)),
             ),
-            Container(
-              margin: const EdgeInsets.only(top: 16.0),
-              child: Text(
-                place.name,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 30.0,
-                  fontFamily: 'Staatliches',
-                ),
-              ),
+            const SizedBox(height: 10),
+            const Text(
+              'Spesifikasi:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 16.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    children: <Widget>[
-                      const Icon(Icons.calendar_today),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        place.openDays,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      const Icon(Icons.access_time),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        place.openTime,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: <Widget>[
-                      const Icon(Icons.monetization_on),
-                      const SizedBox(height: 8.0),
-                      Text(
-                        place.ticketPrice,
-                        style: informationTextStyle,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+            Text(widget.tempat.description),
+            const SizedBox(height: 10),
+            const Text(
+              'Harga Pasaran di Dunia Internasional:',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            Container(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(
-                place.description,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 16.0,
-                  fontFamily: 'Oxygen',
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 150,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: place.imageUrls.map((url) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: Image.network(url),
-                    ),
-                  );
-                }).toList(),
-              ),
-            ),
+            Text(widget.tempat.price),
           ],
         ),
       ),
-    );
-  }
-}
-
-class ButtonInput extends StatefulWidget {
-  const ButtonInput({Key? key}) : super(key: key);
-
-  @override
-  // ignore: library_private_types_in_public_api
-  _ButtonInputState createState() => _ButtonInputState();
-}
-
-class _ButtonInputState extends State<ButtonInput> {
-  bool isFavorite = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.blue,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          if (isImageModalOpen) {
+            Navigator.pop(context);
+          } else {
+            showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  content: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Image(
+                        image: AssetImage(widget.tempat.imagePath),
+                        width: 300,
+                      ),
+                      const SizedBox(height: 10),
+                      const Text(
+                        'Spesifikasi:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(widget.tempat.description),
+                      const SizedBox(height: 30),
+                      const Text(
+                        'Harga Pasaran di Dunia Internasional:',
+                        style: TextStyle(
+                            fontSize: 18, fontWeight: FontWeight.bold),
+                      ),
+                      Text(widget.tempat.price),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Text('Tutup'),
+                    ),
+                  ],
+                );
+              },
+            );
+          }
+          setState(() {
+            isImageModalOpen = !isImageModalOpen;
+          });
+        },
+        child: Icon(isImageModalOpen ? Icons.close : Icons.fullscreen),
       ),
-      onPressed: () {
-        setState(() {
-          isFavorite = !isFavorite;
-        });
-      },
     );
   }
 }
