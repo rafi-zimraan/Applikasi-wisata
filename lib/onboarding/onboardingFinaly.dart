@@ -12,7 +12,7 @@ class Onboard_page extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage('lib/images/bgg.png'), fit: BoxFit.cover)),
           child: Container(
@@ -23,14 +23,15 @@ class Onboard_page extends StatelessWidget {
               Center(
                   child: Column(
                 children: [
-                  Image(
+                  const Image(
                     image: AssetImage(
                       'lib/images/car.jpg',
                     ),
                     height: 300,
                   ),
+                  // ignore: avoid_unnecessary_containers
                   Container(
-                    child: buttonOnboard(),
+                    child: const buttonOnboard(),
                   ),
                 ],
               )),

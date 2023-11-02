@@ -2,6 +2,7 @@ import 'package:awesome_flutter/colors/constan.dart';
 import 'package:awesome_flutter/main_screen.dart';
 import 'package:flutter/material.dart';
 
+// ignore: camel_case_types
 class buttonOnboard extends StatefulWidget {
   const buttonOnboard({
     super.key,
@@ -17,14 +18,14 @@ class _TombolState extends State<buttonOnboard> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Pesan'),
+          title: const Text('Pesan'),
           content: Text(message),
           actions: [
             TextButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text('Tutup'),
+              child: const Text('Tutup'),
             ),
           ],
         );
@@ -49,7 +50,7 @@ class _TombolState extends State<buttonOnboard> {
                   ),
                 ),
                 side: MaterialStateProperty.all(
-                    BorderSide(color: Colors.white54)),
+                    const BorderSide(color: Colors.white54)),
                 backgroundColor:
                     MaterialStateProperty.all<Color>(AppColors.abu),
               ),
@@ -57,14 +58,14 @@ class _TombolState extends State<buttonOnboard> {
                 // Menampilkan pesan modal untuk "Scan ID"
                 _showModal('Nantikan fiturnya...');
               },
-              child: Text(
+              child: const Text(
                 'Scan ID',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               ),
             ),
           ),
-          SizedBox(height: 20), // Memberikan jarak antar tombol
-          Container(
+          const SizedBox(height: 20), // Memberikan jarak antar tombol
+          SizedBox(
             width: 230,
             height: 50,
             child: ElevatedButton(
@@ -75,7 +76,7 @@ class _TombolState extends State<buttonOnboard> {
                   ),
                 ),
                 side: MaterialStateProperty.all(
-                    BorderSide(color: Colors.white54)),
+                    const BorderSide(color: Colors.white54)),
                 backgroundColor:
                     MaterialStateProperty.all<Color>(AppColors.abu),
               ),
@@ -89,8 +90,8 @@ class _TombolState extends State<buttonOnboard> {
               ),
             ),
           ),
-          SizedBox(height: 20), // Memberikan jarak antar tombol
-          Container(
+          const SizedBox(height: 20), // Memberikan jarak antar tombol
+          SizedBox(
             width: 230,
             height: 50,
             child: ElevatedButton(
@@ -101,7 +102,7 @@ class _TombolState extends State<buttonOnboard> {
                   ),
                 ),
                 side: MaterialStateProperty.all(
-                    BorderSide(color: Colors.white54)),
+                    const BorderSide(color: Colors.white54)),
                 backgroundColor:
                     MaterialStateProperty.all<Color>(AppColors.abu),
               ),
@@ -110,14 +111,14 @@ class _TombolState extends State<buttonOnboard> {
                   context,
                   PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) =>
-                          MainScreen(),
+                          const MainScreen(),
                       transitionsBuilder:
                           (context, animation, secondaryAnimation, child) {
                         return FadeTransition(opacity: animation, child: child);
                       }),
                 );
               },
-              child: Text(
+              child: const Text(
                 'Masuk',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               ),

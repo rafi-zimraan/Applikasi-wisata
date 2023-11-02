@@ -16,12 +16,13 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(Duration(milliseconds: 1500), () {
+    Future.delayed(const Duration(milliseconds: 1500), () {
       Navigator.pushReplacement(
           context,
           PageRouteBuilder(
-              pageBuilder: (context, animation1, animation2) => Onboard_page(),
-              transitionDuration: Duration(milliseconds: 150),
+              pageBuilder: (context, animation1, animation2) =>
+                  const Onboard_page(),
+              transitionDuration: const Duration(milliseconds: 150),
               transitionsBuilder: (context, animation1, animation2, child) {
                 return ScaleTransition(
                   scale: animation1,
@@ -34,16 +35,16 @@ class _SplashState extends State<Splash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 34, 33, 33),
+      backgroundColor: const Color.fromARGB(255, 34, 33, 33),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
             image: DecorationImage(
                 image: AssetImage('lib/images/bgg.png'), fit: BoxFit.cover)),
         child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           const Center(
             child: Image(
               image: AssetImage(
-                'lib/images/car.jpg',
+                'lib/images/img-2.png',
               ),
               height: 200,
             ),

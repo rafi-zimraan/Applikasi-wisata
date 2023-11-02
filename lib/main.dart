@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Applikasi Wisata Indonesia',
       theme: ThemeData(),
-      home: Onboard(),
+      home: const Onboard(),
     );
   }
 }

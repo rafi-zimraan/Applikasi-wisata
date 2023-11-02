@@ -60,11 +60,11 @@ class _OnboardState extends State<Onboard> {
         ],
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 20.0),
         child: PageView.builder(
             itemCount: screen.length,
             controller: _pageController,
-            physics: NeverScrollableScrollPhysics(),
+            physics: const NeverScrollableScrollPhysics(),
             onPageChanged: (int index) {
               setState(() {
                 currentIndex = index;
@@ -88,7 +88,8 @@ class _OnboardState extends State<Onboard> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Container(
-                                margin: EdgeInsets.symmetric(horizontal: 3.0),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 3.0),
                                 width: currentIndex == index ? 25.0 : 8.0,
                                 height: 8,
                                 decoration: BoxDecoration(
@@ -126,15 +127,15 @@ class _OnboardState extends State<Onboard> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => Splash()));
+                                  builder: (context) => const Splash()));
                         }
 
                         _pageController.nextPage(
-                            duration: Duration(microseconds: 300),
+                            duration: const Duration(microseconds: 300),
                             curve: Curves.bounceIn);
                       },
                       child: Container(
-                        padding: EdgeInsets.symmetric(
+                        padding: const EdgeInsets.symmetric(
                             horizontal: 30.0, vertical: 10.0),
                         decoration: BoxDecoration(
                           color:
@@ -150,7 +151,7 @@ class _OnboardState extends State<Onboard> {
                                     color: index % 2 == 0
                                         ? AppColors.white
                                         : AppColors.blue)),
-                            SizedBox(width: 15.0),
+                            const SizedBox(width: 15.0),
                             Icon(
                               Icons.arrow_forward_sharp,
                               color: index % 2 == 0
