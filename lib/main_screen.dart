@@ -1,21 +1,33 @@
 import 'package:flutter/material.dart';
-import 'detail_screen.dart'; // Import file detail_screen.dart
+import 'detail_screen.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: MainScreen(),
+    );
+  }
+}
 
 class MainScreen extends StatelessWidget {
-  // ignore: use_key_in_widget_constructors
-  const MainScreen({Key? key});
+  const MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Gunung Bromo'),
+        title: Text('Gunung Bromo'),
       ),
       body: ListView.builder(
-        itemCount: sportCars.length,
+        itemCount: sportPlaces.length,
         itemBuilder: (context, index) {
-          final tempat = sportCars[index];
-          return InkWell(
+          final tempat = sportPlaces[index];
+          return GestureDetector(
             onTap: () {
               Navigator.push(
                 context,
@@ -25,31 +37,58 @@ class MainScreen extends StatelessWidget {
               );
             },
             child: Card(
+              margin: EdgeInsets.all(12),
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
               child: Row(
                 children: <Widget>[
-                  Expanded(
-                    flex: 1,
-                    child: Image(
-                      image: AssetImage(tempat.imagePath),
-                      height: 100,
-                      width: 100,
+                  Container(
+                    width: 120,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: DecorationImage(
+                        image: AssetImage(tempat.imagePath),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                   Expanded(
-                    flex: 2,
                     child: Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(12.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Text(
                             tempat.name,
-                            style: const TextStyle(fontSize: 16.0),
+                            style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                          const SizedBox(
-                            height: 10,
+                          SizedBox(height: 8),
+                          Text(
+                            tempat.brand,
+                            style: TextStyle(
+                              fontSize: 14.0,
+                              color: Colors.grey,
+                            ),
                           ),
-                          Text(tempat.brand),
+                          SizedBox(height: 8),
+                          Text(
+                            tempat.description,
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            'Price: ${tempat.price}',
+                            style: TextStyle(
+                              fontSize: 16.0,
+                              color: Colors.blue,
+                            ),
+                          ),
                         ],
                       ),
                     ),
@@ -64,15 +103,14 @@ class MainScreen extends StatelessWidget {
   }
 }
 
-// ignore: camel_case_types
-class sportPlace {
+class SportPlace {
   final String name;
   final String brand;
   final String imagePath;
   final String description;
-  final String price; // Tambahkan atribut harga
+  final String price;
 
-  sportPlace({
+  SportPlace({
     required this.name,
     required this.brand,
     required this.imagePath,
@@ -81,69 +119,66 @@ class sportPlace {
   });
 }
 
-final List<sportPlace> sportCars = [
-  sportPlace(
+final List<SportPlace> sportPlaces = [
+  SportPlace(
     name: 'Taman nasional tengger Bromo',
     brand: 'Bromo',
     imagePath: 'lib/images/Bromo.jpg',
     description:
-        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia ',
+        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia',
     price: '20.00 USD',
   ),
-  sportPlace(
-    name: 'Mobil yang di buat di indonesia ',
+  SportPlace(
+    name: 'Mobil yang dibuat di Indonesia',
     brand: 'Mobilio',
     imagePath: 'lib/images/car.jpg',
-    description:
-        'Salah satu Mobile terbaik di indonesia, bertempatan di Indonesia ',
+    description: 'Salah satu mobil terbaik di Indonesia',
     price: '1,000,000 USD',
   ),
-  sportPlace(
-    name: 'Restauran prancisco',
-    brand: 'Restauran',
-    imagePath: 'lib/images/restauran.jpg',
-    description:
-        'Salah satu restauran yang menenya ala eropa, bertempatan di Indonesia ',
-    price: '13,,000 USD',
-  ),
-  sportPlace(
+  SportPlace(
     name: 'Taman nasional tengger Bromo',
     brand: 'Bromo',
     imagePath: 'lib/images/Bromo.jpg',
     description:
-        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia ',
-    price: '1,000,000 USD',
+        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia',
+    price: '20.00 USD',
   ),
-  sportPlace(
-    name: 'Taman nasional tengger Bromo',
-    brand: 'Bromo',
+  SportPlace(
+    name: 'Mobil yang dibuat di Indonesia',
+    brand: 'Mobilio',
     imagePath: 'lib/images/car.jpg',
-    description:
-        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia ',
+    description: 'Salah satu mobil terbaik di Indonesia',
     price: '1,000,000 USD',
   ),
-  sportPlace(
-    name: 'Restauran prancisco',
-    brand: 'Restauran',
-    imagePath: 'lib/images/restauran.jpg',
-    description:
-        'Salah satu restauran yang menenya ala eropa, bertempatan di Indonesia ',
-    price: '13,,000 USD',
-  ),
-  sportPlace(
+  SportPlace(
     name: 'Taman nasional tengger Bromo',
     brand: 'Bromo',
     imagePath: 'lib/images/Bromo.jpg',
     description:
-        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia ',
+        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia',
+    price: '20.00 USD',
+  ),
+  SportPlace(
+    name: 'Mobil yang dibuat di Indonesia',
+    brand: 'Mobilio',
+    imagePath: 'lib/images/car.jpg',
+    description: 'Salah satu mobil terbaik di Indonesia',
     price: '1,000,000 USD',
   ),
-  sportPlace(
+  SportPlace(
     name: 'Taman nasional tengger Bromo',
     brand: 'Bromo',
-    imagePath: 'lib/images/car.jpg',
+    imagePath: 'lib/images/Bromo.jpg',
     description:
-        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia ',
+        'Salah satu tempat wisata yang sangat populer, bertempatan di Indonesia',
+    price: '20.00 USD',
+  ),
+  SportPlace(
+    name: 'Mobil yang dibuat di Indonesia',
+    brand: 'Mobilio',
+    imagePath: 'lib/images/car.jpg',
+    description: 'Salah satu mobil terbaik di Indonesia',
     price: '1,000,000 USD',
   ),
+  // Tambahkan item lain di sini...
 ];

@@ -1,4 +1,5 @@
 import 'package:awesome_flutter/colors/constan.dart';
+import 'package:awesome_flutter/login/log8in.dart';
 import 'package:awesome_flutter/main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -81,11 +82,19 @@ class _TombolState extends State<buttonOnboard> {
                     MaterialStateProperty.all<Color>(AppColors.abu),
               ),
               onPressed: () {
-                // Menampilkan pesan modal untuk "Daftar"
-                _showModal('Nantikan fiturnya...');
+                Navigator.push(
+                  context,
+                  PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) =>
+                          const Login(),
+                      transitionsBuilder:
+                          (context, animation, secondaryAnimation, child) {
+                        return FadeTransition(opacity: animation, child: child);
+                      }),
+                );
               },
               child: Text(
-                'Daftar',
+                'LOGIN',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w400),
               ),
             ),

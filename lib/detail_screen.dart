@@ -4,7 +4,7 @@ import 'package:awesome_flutter/main_screen.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {
-  final sportPlace tempat;
+  final SportPlace tempat;
 
   const DetailScreen({
     super.key,
