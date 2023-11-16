@@ -1,10 +1,10 @@
-# awesome_flutter
+# Submission Project Akhir Belajar Membuat Aplikasi Flutter untuk Pemula
 
 A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application And  Submission Project Akhir Belajar Membuat Aplikasi Flutter untuk Pemula
+This project is a starting point for a Flutter application And Submission Project Akhir Belajar Membuat Aplikasi Flutter untuk Pemula
 - There is a use of Stateless Widgets.
 - There is use of Stateful Widgets.
 - Have at least 2 (two) pages and implement Navigation.
